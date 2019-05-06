@@ -14,7 +14,7 @@ session_start();
     <?php
      require_once "connect.php";
 
-    $sql = "CREATE TABLE bookings(
+    $sql = "CREATE TABLE IF NOT EXISTS bookings(
         id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         firstname VARCHAR(50),
         lastname VARCHAR(50),
@@ -27,7 +27,7 @@ session_start();
     $conn ->query($sql);
     echo $conn-> error;
 
-    //if(!isset($_POST['submit'])){
+
     ?>
  
      <h1>TriggerTRIP</h1>
@@ -69,12 +69,9 @@ session_start();
 
 
 
-$daysbooked = $interval->format('%R%a days');
-$value;
-
-if(isset($_POST['hotelname'])){
+$daysbooked = $interval->format('%d');
     $value;
-switch($_POST['hotelname']){
+switch($_SESSION['hotelname']){
   case "Hilton":
   $value = $daysbooked * 500;
   break;
@@ -93,7 +90,6 @@ switch($_POST['hotelname']){
 
   default:
   return "Invalid Booking";
-    }
 }
 
 
@@ -115,7 +111,7 @@ echo "<div class='feedback'> <br> Firstname: ". $_SESSION['firstname'] . "<br>
         
         $firstname = $_SESSION['firstname'];
         $lastname = $_SESSION['lastname'];
-        $hoteltname = $_SESSION['hotelname'];
+        $hotelname = $_SESSION['hotelname'];
         $indate = $_SESSION['indate'];
         $outdate = $_SESSION['outdate'];
             $stmt -> execute();

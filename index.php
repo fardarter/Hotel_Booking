@@ -69,8 +69,8 @@ session_start();
 
 
 
-$daysbooked = $interval->format('%R%a%d');
-
+$daysbooked = $interval->format('%R%a days');
+$value;
 
 if(isset($_POST['hotelname'])){
     $value;
@@ -102,7 +102,7 @@ echo "<div class='feedback'> <br> Firstname: ". $_SESSION['firstname'] . "<br>
     "<br> Start Date: " . $_SESSION['indate'].
     "<br> End Date: " . $_SESSION['outdate'].
     "<br> Hotel Name: " . $_SESSION['hotelname'].
-    "<br>" . $interval->format('%R%a%d') . "<br> total: " . $value . "</div>";
+    "<br>" . $interval->format('%R%a days') . "<br> total: " . $value . "</div>";
 
         echo "<form class='form-inline' role='form' method='post' action=".
         htmlentities($_SERVER["PHP_SELF"]).
@@ -110,7 +110,7 @@ echo "<div class='feedback'> <br> Firstname: ". $_SESSION['firstname'] . "<br>
 
         if(isset($_POST['confirm'])){
             $stmt = $conn->prepare("INSERT INTO bookings(firstname,lastname,hotelname,indate,outdate)VALUES(?,?,?,?,?)");
-                $stmt -> bind_param("sssss","firstname,lastname,hotelname,indate,outdate");
+                $stmt -> bind_param('sssss',$firstname,$lastname,$hotelname,$indate,$outdate);
                 
         
         $firstname = $_SESSION['firstname'];

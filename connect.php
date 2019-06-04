@@ -1,6 +1,6 @@
 <?php
 
-require_once 'user.php';
+require_once 'User.php';
 
 $conn = new Mysqli(MY_SERVER, MY_USERNAME, MY_PASSWORD,MY_DBNAME);
 

@@ -24,6 +24,11 @@ session_start();
     <?php
      require_once "connect.php";
 
+// Some reources to check out: https://www.php.net/manual/en/book.pdo.php
+// A DB wrapper for PDO:  https://github.com/paragonie/easydb
+// The guy who wrote the library: https://twitter.com/ciphpercoder?lang=en
+// His blog (he's the best PHP security person I know): https://paragonie.com/blog/2019/01/our-php-security-roadmap-for-year-2019
+    
     $sql = "CREATE TABLE IF NOT EXISTS bookings(
         id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         firstname VARCHAR(50),
